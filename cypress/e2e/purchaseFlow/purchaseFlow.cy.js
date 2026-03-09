@@ -2,20 +2,10 @@
 
 import locators from "../../support/locators/locators"
 
-describe("Login", () => {
-
-  it("Realizar login", () => {
-    cy.env(['baseUrl', 'username', 'password']).then(({ baseUrl, username, password }) => {
-        cy.visit(baseUrl)
-        cy.get(locators.USER_INPUT).type("pedromorisco")
-        cy.get(locators.PASSWORD_INPUT).type("123456@")
-        cy.get(locators.LOGIN_BTN).click()
-        cy.get(locators.HOME_BTN)
-    })
-  })
+describe("Purchase Flow", () => {
 
   it("Fluxo de compra", () => {
-    cy.env(['baseUrl', 'username', 'password']).then(({ baseUrl, username, password}) => {
+    cy.env(['username', 'password']).then(({ username, password}) => {
         
         cy.login(username, password)
 
