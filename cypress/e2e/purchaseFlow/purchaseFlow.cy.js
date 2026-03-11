@@ -48,27 +48,27 @@ describe("Purchase Flow", () => {
         cy.contains("p", "Fazer pedido")
             .click()
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
+        cy.get(locators.BTN_PROXIMA_ETAPA)
             .last()
             .should("be.visible")
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
+        cy.get(locators.BTN_PROXIMA_ETAPA)
             .last()
             .click()
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method/2']")
+        cy.get(locators.SALDO_VIRTUAL_BTN)
             .last()
             .should("be.visible")
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method/2']")
+        cy.get(locators.SALDO_VIRTUAL_BTN)
             .last()
             .click()
 
-        cy.get("a[href='/lybera-shop/checkout/finalize-order']")
+        cy.get(locators.BTN_FINALIZE_ORDER)
             .last()
             .should("be.visible")
 
-        cy.get("a[href='/lybera-shop/checkout/finalize-order']")
+        cy.get(locators.BTN_FINALIZE_ORDER)
             .last()
             .click()
 
@@ -80,7 +80,7 @@ describe("Purchase Flow", () => {
             .last()
             .click()
 
-        cy.get("img[alt='Check']")
+        cy.get("img[alt='Check']", {timeout: 8000})
             .siblings()
             .first()
             .should("have.text", "Pagamento Realizado com sucesso")
@@ -89,7 +89,7 @@ describe("Purchase Flow", () => {
 
   it("Fluxo de compra - Pagamento com cartão de crédito", () => {
 
-    cy.env(['username', 'password']).then(({ username, password}) => {
+    cy.env(['username', 'password', 'cardName', 'cardNumber', 'cardExpirationMonth', 'cardExpirationYear', 'cardCVV']).then(({ username, password, cardName, cardNumber, cardExpirationMonth, cardExpirationYear, cardCVV}) => {
         
         cy.login(username, password)
 
@@ -148,7 +148,7 @@ describe("Purchase Flow", () => {
             .last()
             .click()
 
-        cy.fillCreditCardData()
+        cy.fillCreditCardData(cardName, cardNumber, cardExpirationMonth, cardExpirationYear, cardCVV)
 
         cy.get("button[type='submit']")
             .click()

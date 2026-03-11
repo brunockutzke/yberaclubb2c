@@ -29,18 +29,20 @@ import locators from "../support/locators/locators"
 Cypress.Commands.add("login", (email, password) => {
   cy.env(["baseUrl"]).then(({ baseUrl }) => {
     cy.visit(baseUrl)
-    cy.get(locators.USER_INPUT).type(email)
-    cy.get(locators.PASSWORD_INPUT).type(password)
+    cy.get(locators.USER_INPUT).type(email, {log:false})
+    cy.get(locators.PASSWORD_INPUT).type(password, {log:false})
     cy.get(locators.LOGIN_BTN).click()
     cy.get("a[href='/home']")
   })
 })
 
-Cypress.Commands.add("fillCreditCardData", () => {
-    cy.get("input[name='cardName']").type("Nome Impresso")
-    cy.get("div[class='relative'] > img ~ input").type("4235647728025682")
-    cy.get("input[placeholder='00']").type('01')
-    cy.get("input[placeholder='0000']").type('2035')
-    cy.get("input[placeholder='000']").type('123')
+Cypress.Commands.add("fillCreditCardData", (cardName, cardNumber, expirationMonth, expirationYear, cvv) => {
+    cy.get("input[name='cardName']").type(cardName, {log:false})
+    cy.get("div[class='relative'] > img ~ input").type(cardNumber, {log:false})
+    cy.get("input[placeholder='00']").type(expirationMonth, {log:false})
+    cy.get("input[placeholder='0000']").type(expirationYear, {log:false})
+    cy.get("input[placeholder='000']").type(cvv, {log:false})
     cy.get("select").select(1, { force: true })
 })
+
+//4235647728025682
