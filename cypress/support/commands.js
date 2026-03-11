@@ -38,10 +38,9 @@ Cypress.Commands.add("login", (email, password) => {
 
 Cypress.Commands.add("fillCreditCardData", () => {
     cy.get("input[name='cardName']").type("Nome Impresso")
-    cy.get("div[class='relative'] > img ~ input").type("4242424242424242")
+    cy.get("div[class='relative'] > img ~ input").type("4235647728025682")
     cy.get("input[placeholder='00']").type('01')
     cy.get("input[placeholder='0000']").type('2035')
     cy.get("input[placeholder='000']").type('123')
-    //cy.get("button[role='combobox']").click()
-    cy.get("select").select('1', { force: true })
+    cy.get("select").select(1, { force: true })
 })

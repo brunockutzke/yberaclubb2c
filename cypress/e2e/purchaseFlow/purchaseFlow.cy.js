@@ -4,7 +4,7 @@ import locators from "../../support/locators/locators"
 
 describe("Purchase Flow", () => {
 
-  it("Fluxo de compra - Pagamento com saldo global", () => {
+  it("Fluxo de compra - Pagamento com saldo virtual", () => {
     cy.env(['username', 'password']).then(({ username, password}) => {
         
         cy.login(username, password)
@@ -87,7 +87,7 @@ describe("Purchase Flow", () => {
     })
   })
 
-  it.only("Fluxo de compra - Pagamento com cartão de crédito", () => {
+  it("Fluxo de compra - Pagamento com cartão de crédito", () => {
 
     cy.env(['username', 'password']).then(({ username, password}) => {
         
@@ -150,26 +150,16 @@ describe("Purchase Flow", () => {
 
         cy.fillCreditCardData()
 
-        /* cy.get("a[href='/lybera-shop/checkout/finalize-order']")
-            .last()
-            .should("be.visible")
-
-        cy.get("a[href='/lybera-shop/checkout/finalize-order']")
-            .last()
+        cy.get("button[type='submit']")
             .click()
 
-        cy.get("div[class='flex'] > div > p ~ div ~ div ~ button")
-            .last()
-            .scrollIntoView()
-
-        cy.get("div[class='flex'] > div > p ~ div ~ div ~ button")
-            .last()
+        cy.contains("button", "Confirmar Pedido")
             .click()
 
-        cy.get("img[alt='Check']")
+        cy.get("img[alt='Check']", {timeout: 8000})
             .siblings()
             .first()
-            .should("have.text", "Pagamento Realizado com sucesso") */
+            .should("have.text", "Pagamento Realizado com sucesso") 
     })
   })
 })
