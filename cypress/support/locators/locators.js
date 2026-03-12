@@ -12,6 +12,7 @@ const locators = {
     REGISTER_SUBMIT_BTN: "#register-button-submit",
     BTN_PROXIMA_ETAPA: "a[href='/lybera-shop/checkout/payment-method']",
     SALDO_VIRTUAL_BTN: "a[href='/lybera-shop/checkout/payment-method/2']",
+    CREDIT_CARD_PAYMENT_METHOD_BTN: "a[href='/lybera-shop/checkout/payment-method/3']",
     BTN_FINALIZE_ORDER: "a[href='/lybera-shop/checkout/finalize-order']"
 }
 

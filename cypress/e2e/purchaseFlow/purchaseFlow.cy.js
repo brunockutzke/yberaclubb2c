@@ -89,6 +89,8 @@ describe("Purchase Flow", () => {
 
   it("Fluxo de compra - Pagamento com cartão de crédito", () => {
 
+    let successMsg = "Pagamento Realizado com sucesso"
+
     cy.env(['username', 'password', 'cardName', 'cardNumber', 'cardExpirationMonth', 'cardExpirationYear', 'cardCVV']).then(({ username, password, cardName, cardNumber, cardExpirationMonth, cardExpirationYear, cardCVV}) => {
         
         cy.login(username, password)
@@ -140,11 +142,11 @@ describe("Purchase Flow", () => {
             .last()
             .click()
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method/3']")
+        cy.get(locators.CREDIT_CARD_PAYMENT_METHOD_BTN)
             .last()
             .should("be.visible")
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method/3']")
+        cy.get(locators.CREDIT_CARD_PAYMENT_METHOD_BTN)
             .last()
             .click()
 
@@ -159,7 +161,7 @@ describe("Purchase Flow", () => {
         cy.get("img[alt='Check']", {timeout: 8000})
             .siblings()
             .first()
-            .should("have.text", "Pagamento Realizado com sucesso") 
+            .should("have.text", successMsg) 
     })
   })
 })
