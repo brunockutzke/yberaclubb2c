@@ -44,5 +44,3 @@ Cypress.Commands.add("fillCreditCardData", (cardName, cardNumber, expirationMont
     cy.get("input[placeholder='000']").type(cvv, {log:false})
     cy.get("select").select(1, { force: true })
 })
-
-//4235647728025682
