@@ -7,7 +7,9 @@ describe("Register", () => {
     it("Fluxo de cadastro", () => {
 
         const faker = require('faker-br')
-        let email = faker.internet.email()
+        let firstName = faker.name.firstName()
+        let lastName = faker.name.lastName()
+        let email = faker.name.firstName() + "@mailinator.com"
         let user = "bruno" + faker.random.number()
         let influencerIndicationLink
 
@@ -44,17 +46,17 @@ describe("Register", () => {
 
                     cy.visit(influencerIndicationLink)
 
-                    cy.get(locators.REGISTER_FIRST_NAME).type("Bruno")
+                    cy.get(locators.REGISTER_FIRST_NAME).type(firstName)
 
-                    cy.get(locators.REGISTER_LAST_NAME_INPUT).type("CK")
+                    cy.get(locators.REGISTER_LAST_NAME_INPUT).type(lastName)
 
                     cy.get(locators.REGISTER_USER_INPUT).type(user)
 
                     cy.get(locators.REGISTER_EMAIL_INPUT).type(email)
 
-                    cy.get(locators.REGISTER_PASSWORD_INPUT).type(password)
+                    cy.get(locators.REGISTER_PASSWORD_INPUT).type(password, { log:false })
 
-                    cy.get(locators.REGISTER_PASSWORD_CONFIRM_INPUT).type(password)
+                    cy.get(locators.REGISTER_PASSWORD_CONFIRM_INPUT).type(password, { log:false })
 
                     cy.get(locators.REGISTER_SUBMIT_BTN).click()
 
