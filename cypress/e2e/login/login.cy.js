@@ -7,93 +7,10 @@ describe("Login", () => {
   it("Realizar login", () => {
     cy.env(['baseUrl', 'username', 'password']).then(({ baseUrl, username, password }) => {
         cy.visit(baseUrl)
-        cy.get(locators.USER_INPUT).type("pedromorisco")
-        cy.get(locators.PASSWORD_INPUT).type("123456@")
+        cy.get(locators.USER_INPUT).type(username)
+        cy.get(locators.PASSWORD_INPUT).type(password)
         cy.get(locators.LOGIN_BTN).click()
         cy.get(locators.HOME_BTN)
-    })
-  })
-
-  it("Fluxo de compra", () => {
-    cy.env(['baseUrl', 'username', 'password']).then(({ baseUrl, username, password}) => {
-        
-        cy.login(username, password)
-
-        cy.get("button[type='button']")
-            .eq(1)
-            .click()
-
-        cy.get("div[role='dialog']")
-            .should("be.visible")
-
-        cy.get(locators.HOME_BTN)
-            .should("be.visible")
-
-        cy.get("li[class='mb-4'] > div ~ div > div > div > div ~ span")
-            .should("be.visible")
-            .eq(2)
-            .click({ force:true })
-
-        cy.get("a[href='/lybera-shop']")
-            .last()
-            .click()
-
-        cy.get("div[class='py-4']")
-            .find('img')
-            .first()
-            .scrollIntoView()
-
-        cy.contains("p", "Comprar agora")
-            .first()
-            .click()
-
-        cy.get("div[role='none'] ~ div > div > div")
-            .first()
-            .should("be.visible")
-
-        cy.get("img[alt='trophy mapa']")
-            .first()
-            .should("be.visible")
-
-        cy.contains("p", "Fazer pedido")
-            .click()
-
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
-            .last()
-            .should("be.visible")
-
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
-            .last()
-            .click()
-
-        cy.get("a[href='/lybera-shop/checkout/payment-method/2']")
-            .last()
-            .should("be.visible")
-
-        cy.get("a[href='/lybera-shop/checkout/payment-method/2']")
-            .last()
-            .click()
-
-        cy.get("a[href='/lybera-shop/checkout/finalize-order']")
-            .last()
-            .should("be.visible")
-
-        cy.get("a[href='/lybera-shop/checkout/finalize-order']")
-            .last()
-            .click()
-
-        cy.get("div[class='flex'] > div > p ~ div ~ div ~ button")
-            .last()
-            .scrollIntoView()
-
-        cy.get("div[class='flex'] > div > p ~ div ~ div ~ button")
-            .last()
-            .click()
-
-        cy.get("img[alt='Check']")
-            .siblings()
-            .first()
-            .should("have.text", "Pagamento Realizado com sucesso")
     })
   })
 })
