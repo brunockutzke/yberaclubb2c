@@ -134,11 +134,11 @@ describe("Purchase Flow", () => {
         cy.contains("p", "Fazer pedido")
             .click()
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
+        cy.get(locators.BTN_NEXT_STEP_CHECKOUT_VIEW)
             .last()
             .should("be.visible")
 
-        cy.get("a[href='/lybera-shop/checkout/payment-method']")
+        cy.get(locators.BTN_NEXT_STEP_CHECKOUT_VIEW)
             .last()
             .click()
 
